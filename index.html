@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fast Food C&T</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <style>
+        body {
+    font-family: Arial, sans-serif;
+    color: white;
+    background-image: url("./imgmenu/LOGO.png");
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.header {
+    width: 100%;
+    background: linear-gradient(to right, #6A11CB, #2575FC);
+    padding: 15px 0;
+    margin-bottom: 30px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+    border-radius: 5px;
+    position: sticky;
+    top: 0;
+    z-index: 10;
+}
+
+.header h1 {
+    text-align: center;
+    font-size: 3em;
+    font-weight: bold;
+    text-shadow: 4px 4px #000000;
+    margin: 0;
+}
+
+.header p {
+    font-size: 1.2em;
+    background: linear-gradient(to right, #6A11CB, #2575FC);
+    text-align: center;
+}
+
+.galeria {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 20px;
+    margin-top: 50px;
+    margin-bottom: 50px;
+}
+
+.item {
+    background-color: rgba(255, 255, 255, 0.1);
+    border: 2px solid white;
+    border-radius: 15px;
+    backdrop-filter: blur(10px);
+    padding: 15px;
+    width: 250px;
+    height: 350px;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    align-items: center;
+    position: relative;
+    overflow: hidden;
+}
+
+.item img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 10px;
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 1;
+}
+
+.item p {
+    background-color: rgba(0, 0, 0, 0.5);
+    padding: 5px 10px;
+    border-radius: 10px;
+    position: relative;
+    z-index: 2;
+    margin: 0;
+    font-weight: bold;
+    font-size: 1.5em;
+    transform: translateY(-10px);
+}
+
+@media (max-width: 1300px) {
+    .header h1 {
+        font-size: 3.5em;
+    }
+    .galeria {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 25px;
+        max-width: 900px;
+    }
+}
+
+@media (max-width: 1000px) {
+    .header h1 {
+        font-size: 3em;
+    }
+    .header p {
+        font-size: 1.2em;
+    }
+    
+}
+
+@media (max-width: 700px) {
+    .header h1 {
+        font-size: 2.5em;
+    }
+    .header p {
+        font-size: 1em;
+    }
+    .galeria {
+        padding: 0 10px;
+    }
+    .item {
+        height: 250px;
+    }
+    .item p {
+        font-size: 1.5em;
+    }
+    .galeria {
+        grid-template-columns: 1fr; 
+    }
+}
+
+@media (max-width: 300px) {
+    .header h1 {
+        font-size: 2em;
+    }
+    .header p {
+        font-size: 0.8em;
+    }
+    .item p {
+        font-size: 1.2em;
+    }
+}
+    </style>
+    <div class="header">
+        <h1>FAST FOOD C&T</h1>
+        <p>TU LUGAR IDEAL PARA HAMBURGUESAS Y HOT DOGS</p>
+        <p>SABOR QUE TE ENCANTA, SERVICIO RAPIDO</p>
+    </div>
+
+    <div class="galeria">
+        <a href="hamburgesa.html"><div class="item">
+            <img src="./imgHamburguesa/conjunto-iconos-hamburguesas-vectorializadas_772298-36473.jpg" alt="Hamburguesa">
+            <p>HAMBURGUESA</p>
+        </div></a>
+        <a href="hotdog.html"><div class="item">
+            <img src="./imgPerros/cute-hot-dog-icon-pack-minimalist-d-white-background-get-highly-detailed-k-graphic-design-icons-each-designed-276291081.webp" alt="Hot Dog">
+            <p>HOTDOG</p>
+        </div></a>
+        <a href="salchipapa.html"><div class="item">
+            <img src="./imgSalchipapa/dibujado-mano-ilustracion-salchipapa_23-2148774849.jpg" alt="Salchipapas">
+            <p>SALCHIPAPAS</p>
+        </div></a>
+        <a href="bebidas.html"><div class="item">
+            <img src="./imgbebidas/9515d3411d7b18314199a872646e6586-conjunto-de-iconos-de-bebidas-coloridas.webp" alt="Bebidas">
+            <p>BEBIDAS</p>
+        </div></a>
+    </div>
+</body>
+</html>

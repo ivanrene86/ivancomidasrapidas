@@ -1,0 +1,431 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Perros Calientes</title>
+    <link rel="stylesheet" href="estilos_perros.css">
+</head>
+<body>
+    <style>
+    /* --- Estilos generales y media queries (de tu código) --- */
+
+body {
+    margin: 0;
+    font-family: 'Comic Sans MS', cursive, sans-serif;
+    color: white;
+    text-align: center;
+    background-image: url("./imgmenu/LOGO.png");
+    background-size: cover;
+    background-position: center;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 20px;
+    box-sizing: border-box;
+}
+
+.header-perros {
+    width: 100%;
+    background: linear-gradient(to right, #6A11CB, #2575FC);
+    padding: 15px 0;
+    margin-bottom: 30px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+    border-radius: 5px;
+    position: sticky;
+    top: 0;
+    z-index: 10;
+}
+
+.header-perros h1 {
+    font-size: 3em;
+    font-weight: bold;
+    text-shadow: 4px 4px #000000;
+    margin: 0;
+}
+
+.galeria-perros {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 25px;
+    max-width: 1200px;
+    margin-bottom: 50px;
+}
+
+/* --- Estilos del efecto de volteo y las caras de la tarjeta --- */
+
+.item-perro {
+    background-color: transparent;
+    border: 2px solid #fdfcfc;
+    border-radius: 10px;
+    box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.4);
+    position: relative;
+    width: 250px;
+    height: 300px;
+    perspective: 1000px;
+}
+
+.card-inner {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    text-align: center;
+    transition: transform 0.6s;
+    transform-style: preserve-3d;
+}
+
+.item-perro:hover .card-inner {
+    transform: rotateY(180deg);
+}
+
+.card-front, .card-back {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    backface-visibility: hidden;
+    border-radius: 10px;
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+/* --- Estilos de la cara frontal (imagen y nombre) --- */
+
+.card-front {
+    background-color: #1c201f;
+    padding: 10px;
+    justify-content: flex-end;
+}
+
+.card-front img {
+    position: absolute;
+    top: 10px;
+    left: 10px;
+    width: calc(100% - 20px);
+    height: calc(100% - 70px);
+    object-fit: cover;
+    border-radius: 8px;
+    background-color: #dcdcdc;
+}
+
+.card-front p {
+    background: linear-gradient(to right, #6A11CB, #2575FC);
+    padding: 8px 15px;
+    border-radius: 8px;
+    position: relative;
+    z-index: 2;
+    margin-bottom: 5px;
+    font-weight: bold;
+    font-size: 1.2em;
+    line-height: 1.2;
+    text-shadow: 2px 2px #000000;
+}
+
+/* --- Estilos de la cara trasera (estrellas, descripción y precios) --- */
+
+.card-back {
+    background: linear-gradient(to right, #6A11CB, #2575FC);
+    transform: rotateY(180deg);
+    justify-content: center;
+    color: white;
+    padding: 10px;
+    text-align: center;
+}
+
+.card-back h2 {
+    font-size: 1.5em;
+    font-weight: bold;
+    color: white;
+    text-shadow: 2px 2px #000000;
+    margin-bottom: 15px;
+}
+
+.estrellas {
+    font-size: 1.2em;
+    color: #ffd700;
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5);
+    margin-bottom: 10px;
+}
+
+.card-back .descripcion {
+    font-size: 1em;
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5);
+    margin-bottom: 20px;
+    padding: 0 10px;
+}
+
+.info-precio {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 90%;
+    margin-top: 10px;
+    gap: 10px;
+}
+
+.precios {
+    display: flex;
+    flex-direction: column;
+    text-align: right;
+    color: white;
+    font-weight: bold;
+}
+
+.precios .precio-original {
+    font-size: 0.9em;
+    color: #d3d3d3;
+    text-decoration: line-through;
+    text-shadow: none;
+}
+
+.precios .medida {
+    font-size: 0.8em;
+    color: #d3d3d3;
+    text-shadow: none;
+}
+
+.boton-add {
+    background-color: white;
+    color: #ff0000;
+    border-radius: 20px;
+    padding: 5px 15px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 5px;
+    font-size: 1em;
+    font-weight: bold;
+    cursor: pointer;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+}
+.boton-atras {
+    background: linear-gradient(to right, #6A11CB, #2575FC);
+    color: white;
+    padding: 15px 30px;
+    border-radius: 10px;
+    text-decoration: none;
+    font-size: 2em;
+    font-weight: bold;
+    text-shadow: 3px 3px #000000;
+    box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.4);
+    transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.boton-atras:hover {
+    transform: translateY(-3px);
+    box-shadow: 8px 8px 15px rgba(0, 0, 0, 0.5);
+}
+@media (max-width: 1300px) {
+    .galeria-perros {
+        grid-template-columns: repeat(2, 1fr);
+        max-width: 800px;
+    }
+}
+
+@media (max-width: 1000px) {
+    .header-perros h1 {
+        font-size: 2.5em;
+    }
+    .item-perro {
+        height: 250px;
+    }
+}
+
+@media (max-width: 700px) {
+    .header-perros h1 {
+        font-size: 2em;
+    }
+    .item-perro p {
+        font-size: 1em;
+    }
+    .boton-atras {
+        font-size: 1.5em;
+        padding: 10px 20px;
+    }
+    .galeria-perros {
+        grid-template-columns: 1fr;
+        max-width: 800px;
+    }
+}
+
+@media (max-width: 300px) {
+    .header-perros h1 {
+        font-size: 1.5em;
+    }
+    .item-perro p {
+        font-size: 0.8em;
+    }
+    .boton-atras {
+        font-size: 1.2em;
+        padding: 8px 15px;
+    }
+}
+    </style>
+    <div class="header-perros">
+        <h1>PERROS CALIENTES</h1>
+    </div>
+
+    <div class="galeria-perros">
+    <div class="item-perro">
+        <div class="card-inner">
+            <div class="card-front">
+                <img src="./imgPerros/imagen18.jpeg" alt="Perro Caliente con Maiz">
+                <p>PERRO CALIENTE<br>CON MAIZ</p>
+            </div>
+            <div class="card-back">
+                <h2>Perro Caliente con Maíz</h2>
+                <div class="estrellas">
+                    <span>★</span><span>★</span><span>★</span><span>★</span><span>★</span>
+                </div>
+                <p class="descripcion">
+                    Salchicha, pan, maíz tierno, salsa de la casa, y papas trituradas.
+                </p>
+                <div class="info-precio">
+                    <div class="precios">
+                        <span class="precio-original">$11.000</span>
+                    </div>
+                    <div class="boton-add">
+                        <span>Add</span>
+                        <span>$9.500</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="item-perro">
+        <div class="card-inner">
+            <div class="card-front">
+                <img src="./imgPerros/imagen19.jpeg" alt="Perro Caliente con Perejil">
+                <p>PERRO CALIENTE<br>CON PEREJIL</p>
+            </div>
+            <div class="card-back">
+                <h2>Perro Caliente con Perejil</h2>
+                <div class="estrellas">
+                    <span>★</span><span>★</span><span>★</span><span>★</span><span>☆</span>
+                </div>
+                <p class="descripcion">
+                    Salchicha, pan, salsa, y una generosa porción de perejil picado.
+                </p>
+                <div class="info-precio">
+                    <div class="precios">
+                        <span class="precio-original">$10.000</span>
+                    </div>
+                    <div class="boton-add">
+                        <span>Add</span>
+                        <span>$8.500</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="item-perro">
+        <div class="card-inner">
+            <div class="card-front">
+                <img src="./imgPerros/imagen20.jpeg" alt="Perro Caliente Sencillo">
+                <p>PERRO CALIENTE<br>SENCILLO</p>
+            </div>
+            <div class="card-back">
+                <h2>Perro Caliente Sencillo</h2>
+                <div class="estrellas">
+                    <span>★</span><span>★</span><span>★</span><span>☆</span><span>☆</span>
+                </div>
+                <p class="descripcion">
+                    El clásico: salchicha, pan y salsas a tu gusto.
+                </p>
+                <div class="info-precio">
+                    <div class="precios">
+                        <span class="precio-original">$8.000</span>
+                    </div>
+                    <div class="boton-add">
+                        <span>Add</span>
+                        <span>$7.000</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="item-perro">
+        <div class="card-inner">
+            <div class="card-front">
+                <img src="./imgPerros/imagen21.jpeg" alt="Perro Caliente con Tomate">
+                <p>PERRO CALIENTE<br>CON TOMATE</p>
+            </div>
+            <div class="card-back">
+                <h2>Perro Caliente con Tomate</h2>
+                <div class="estrellas">
+                    <span>★</span><span>★</span><span>★</span><span>★</span><span>★</span>
+                </div>
+                <p class="descripcion">
+                    Salchicha, pan, salsa y una fresca porción de tomate en trozos.
+                </p>
+                <div class="info-precio">
+                    <div class="precios">
+                        <span class="precio-original">$11.500</span>
+                    </div>
+                    <div class="boton-add">
+                        <span>Add</span>
+                        <span>$10.000</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="item-perro">
+        <div class="card-inner">
+            <div class="card-front">
+                <img src="./imgPerros/imagen22.jpeg" alt="Perro Caliente con Cebollin">
+                <p>PERRO CALIENTE<br>CON CEBOLLIN</p>
+            </div>
+            <div class="card-back">
+                <h2>Perro Caliente con Cebollín</h2>
+                <div class="estrellas">
+                    <span>★</span><span>★</span><span>★</span><span>☆</span><span>☆</span>
+                </div>
+                <p class="descripcion">
+                    Salchicha, pan, y un toque especial de cebollín picado.
+                </p>
+                <div class="info-precio">
+                    <div class="precios">
+                        <span class="precio-original">$9.500</span>
+                    </div>
+                    <div class="boton-add">
+                        <span>Add</span>
+                        <span>$8.000</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="item-perro">
+        <div class="card-inner">
+            <div class="card-front">
+                <img src="./imgPerros/imagen23.jpeg" alt="Perro Caliente con Pepinillos">
+                <p>PERRO CALIENTE<br>CON PEPINILLOS</p>
+            </div>
+            <div class="card-back">
+                <h2>Perro Caliente con Pepinillos</h2>
+                <div class="estrellas">
+                    <span>★</span><span>★</span><span>★</span><span>★</span><span>☆</span>
+                </div>
+                <p class="descripcion">
+                    Salchicha, pan, y una capa de pepinillos para un toque agridulce.
+                </p>
+                <div class="info-precio">
+                    <div class="precios">
+                        <span class="precio-original">$10.500</span>
+                    </div>
+                    <div class="boton-add">
+                        <span>Add</span>
+                        <span>$9.000</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+    <a href="index.html" class="boton-atras">ATRAS</a>
+</body>
+</html>

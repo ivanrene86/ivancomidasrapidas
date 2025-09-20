@@ -1,0 +1,429 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hamburguesas</title>
+    <link rel="stylesheet" href="estilos_hamburguesas.css"> </head>
+<body>
+    <style>
+   body {
+    margin: 0;
+    font-family: 'Comic Sans MS', cursive, sans-serif;
+    color: white;
+    text-align: center;
+    background-image: url("./imgmenu/LOGO.png");
+    background-size: cover;
+    background-position: center;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 20px;
+    box-sizing: border-box;
+}
+
+.header-hamburguesas {
+    width: 100%;
+    background: linear-gradient(to right, #6A11CB, #2575FC);
+    padding: 15px 0;
+    margin-bottom: 30px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+    border-radius: 5px;
+    position: sticky;
+    top: 0;
+    z-index: 10;
+}
+
+.header-hamburguesas h1 {
+    font-size: 3em;
+    font-weight: bold;
+    text-shadow: 4px 4px #000000;
+    margin: 0;
+}
+
+.galeria-hamburguesas {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 25px;
+    max-width: 1200px;
+    margin-bottom: 50px;
+}
+
+/* --- Estilos del efecto de volteo y las caras de la tarjeta --- */
+
+.item-hamburguesa {
+    background-color: transparent;
+    border: 2px solid #fdfcfc;
+    border-radius: 10px;
+    box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.4);
+    position: relative;
+    width: 250px;
+    height: 300px;
+    perspective: 1000px;
+}
+
+.card-inner {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    text-align: center;
+    transition: transform 0.6s;
+    transform-style: preserve-3d;
+}
+
+.item-hamburguesa:hover .card-inner {
+    transform: rotateY(180deg);
+}
+
+.card-front, .card-back {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    backface-visibility: hidden;
+    border-radius: 10px;
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+/* --- Estilos de la cara frontal (imagen y nombre) --- */
+
+.card-front {
+    background-color: #1c201f;
+    padding: 10px;
+    justify-content: flex-end;
+}
+
+.card-front img {
+    position: absolute;
+    top: 10px;
+    left: 10px;
+    width: calc(100% - 20px);
+    height: calc(100% - 70px);
+    object-fit: cover;
+    border-radius: 8px;
+    background-color: #dcdcdc;
+}
+
+.card-front p {
+    background: linear-gradient(to right, #6A11CB, #2575FC);
+    padding: 8px 15px;
+    border-radius: 8px;
+    position: relative;
+    z-index: 2;
+    margin-bottom: 5px;
+    font-weight: bold;
+    font-size: 1.2em;
+    line-height: 1.2;
+    text-shadow: 2px 2px #000000;
+}
+
+/* --- Estilos de la cara trasera (estrellas, descripción y precios) --- */
+
+.card-back {
+    background: linear-gradient(to right, #6A11CB, #2575FC);
+    transform: rotateY(180deg);
+    justify-content: center;
+    color: white;
+    padding: 10px;
+    text-align: center;
+}
+
+.card-back h2 {
+    font-size: 1.5em;
+    font-weight: bold;
+    color: white;
+    text-shadow: 2px 2px #000000;
+    margin-bottom: 15px;
+}
+
+.estrellas {
+    font-size: 1.2em;
+    color: #ffd700;
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5);
+    margin-bottom: 10px;
+}
+
+.card-back .descripcion {
+    font-size: 1em;
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5);
+    margin-bottom: 20px;
+    padding: 0 10px;
+}
+
+.info-precio {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 90%;
+    margin-top: 10px;
+    gap: 10px;
+}
+
+.precios {
+    display: flex;
+    flex-direction: column;
+    text-align: right;
+    color: white;
+    font-weight: bold;
+}
+
+.precios .precio-original {
+    font-size: 0.9em;
+    color: #d3d3d3;
+    text-decoration: line-through;
+    text-shadow: none;
+}
+
+.precios .medida {
+    font-size: 0.8em;
+    color: #d3d3d3;
+    text-shadow: none;
+}
+
+.boton-add {
+    background-color: white;
+    color: #ff0000;
+    border-radius: 20px;
+    padding: 5px 15px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 5px;
+    font-size: 1em;
+    font-weight: bold;
+    cursor: pointer;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+}
+.boton-atras {
+    background: linear-gradient(to right, #6A11CB, #2575FC);
+    color: white;
+    padding: 15px 30px;
+    border-radius: 10px;
+    text-decoration: none;
+    font-size: 2em;
+    font-weight: bold;
+    text-shadow: 3px 3px #000000;
+    box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.4);
+    transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.boton-atras:hover {
+    transform: translateY(-3px);
+    box-shadow: 8px 8px 15px rgba(0, 0, 0, 0.5);
+}
+
+@media (max-width: 1300px) {
+    .galeria-hamburguesas {
+        grid-template-columns: repeat(2, 1fr);
+        max-width: 800px;
+    }
+}
+
+@media (max-width: 1000px) {
+    .header-hamburguesas h1 {
+        font-size: 2.5em;
+    }
+    
+    .item-hamburguesa {
+        height: 250px;
+    }
+}
+
+@media (max-width: 700px) {
+    .header-hamburguesas h1 {
+        font-size: 2em;
+    }
+    .item-hamburguesa p {
+        font-size: 1em;
+    }
+    .boton-atras {
+        font-size: 1.5em;
+        padding: 10px 20px;
+    }
+    .galeria-hamburguesas {
+        grid-template-columns: 1fr;
+        max-width: 800px;
+    }
+}
+@media (max-width: 300px) {
+    .header-hamburguesas h1 {
+        font-size: 1.5em;
+    }
+    .item-hamburguesa p {
+        font-size: 0.8em;
+    }
+    .boton-atras {
+        font-size: 1.2em;
+        padding: 8px 15px;
+    }
+}
+    </style>
+    <div class="header-hamburguesas">
+        <h1>HAMBURGUESAS</h1>
+    </div>
+
+   <div class="galeria-hamburguesas">
+    <div class="item-hamburguesa">
+        <div class="card-inner">
+            <div class="card-front">
+                <img src="./imgHamburguesa/imagen1.jpeg" alt="Hamburguesa Chicago">
+                <p>HAMBURGUESA<br>CHICAGO</p>
+            </div>
+            <div class="card-back">
+                <h2>Hamburguesa Chicago</h2>
+                <div class="estrellas">
+                    <span>★</span><span>★</span><span>★</span><span>★</span><span>★</span>
+                </div>
+                <p class="descripcion">
+                    Carne de res, queso cheddar fundido, tocino crujiente y salsa BBQ.
+                </p>
+                <div class="info-precio">
+                    <div class="precios">
+                        <span class="precio-original">$18.000</span>
+                    </div>
+                    <div class="boton-add">
+                        <span>Add</span>
+                        <span>$15.500</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="item-hamburguesa">
+        <div class="card-inner">
+            <div class="card-front">
+                <img src="./imgHamburguesa/imagen2.jpeg" alt="Hamburguesa con Huevo">
+                <p>HAMBURGUESA<br>CON HUEVO</p>
+            </div>
+            <div class="card-back">
+                <h2>Hamburguesa con Huevo</h2>
+                <div class="estrellas">
+                    <span>★</span><span>★</span><span>★</span><span>★</span><span>☆</span>
+                </div>
+                <p class="descripcion">
+                    Carne de res, queso, lechuga, tomate y un huevo frito.
+                </p>
+                <div class="info-precio">
+                    <div class="precios">
+                        <span class="precio-original">$16.000</span>
+                    </div>
+                    <div class="boton-add">
+                        <span>Add</span>
+                        <span>$14.000</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="item-hamburguesa">
+        <div class="card-inner">
+            <div class="card-front">
+                <img src="./imgHamburguesa/imagen3.jpeg" alt="Black Label Burger">
+                <p>BLACK LABEL<br>BURGER</p>
+            </div>
+            <div class="card-back">
+                <h2>Black Label Burger</h2>
+                <div class="estrellas">
+                    <span>★</span><span>★</span><span>★</span><span>½</span><span>☆</span>
+                </div>
+                <p class="descripcion">
+                    Carne premium, queso ahumado, cebolla morada y mayonesa de la casa.
+                </p>
+                <div class="info-precio">
+                    <div class="precios">
+                        <span class="precio-original">$22.000</span>
+                    </div>
+                    <div class="boton-add">
+                        <span>Add</span>
+                        <span>$20.000</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="item-hamburguesa">
+        <div class="card-inner">
+            <div class="card-front">
+                <img src="./imgHamburguesa/imagen4.jpeg" alt="Hamburguesa con Tosino">
+                <p>HAMBURGUESA<br>CON TOCINO</p>
+            </div>
+            <div class="card-back">
+                <h2>Hamburguesa con Tocino</h2>
+                <div class="estrellas">
+                    <span>★</span><span>★</span><span>★</span><span>★</span><span>½</span>
+                </div>
+                <p class="descripcion">
+                    Carne de res, queso americano, tocino crujiente y vegetales frescos.
+                </p>
+                <div class="info-precio">
+                    <div class="precios">
+                        <span class="precio-original">$17.500</span>
+                    </div>
+                    <div class="boton-add">
+                        <span>Add</span>
+                        <span>$15.000</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="item-hamburguesa">
+        <div class="card-inner">
+            <div class="card-front">
+                <img src="./imgHamburguesa/imagen5.jpeg" alt="Hamburguesa Sencilla">
+                <p>HAMBURGUESA<br>SENCILLA</p>
+            </div>
+            <div class="card-back">
+                <h2>Hamburguesa Sencilla</h2>
+                <div class="estrellas">
+                    <span>★</span><span>★</span><span>☆</span><span>☆</span><span>☆</span>
+                </div>
+                <p class="descripcion">
+                    Carne de res a la parrilla, con lechuga, tomate y cebolla.
+                </p>
+                <div class="info-precio">
+                    <div class="precios">
+                        <span class="precio-original">$12.000</span>
+                    </div>
+                    <div class="boton-add">
+                        <span>Add</span>
+                        <span>$10.500</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="item-hamburguesa">
+        <div class="card-inner">
+            <div class="card-front">
+                <img src="./imgHamburguesa/imagen6.jpeg" alt="Hamburguesa Doble Carne">
+                <p>HAMBURGUESA<br>DOBLE CARNE</p>
+            </div>
+            <div class="card-back">
+                <h2>Hamburguesa Doble Carne</h2>
+                <div class="estrellas">
+                    <span>★</span><span>★</span><span>★</span><span>★</span><span>★</span>
+                </div>
+                <p class="descripcion">
+                    Doble porción de carne, doble queso, lechuga y tomate.
+                </p>
+                <div class="info-precio">
+                    <div class="precios">
+                        <span class="precio-original">$20.000</span>
+                    </div>
+                    <div class="boton-add">
+                        <span>Add</span>
+                        <span>$18.500</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+    <a href="index.html" class="boton-atras">ATRAS</a>
+</body>
+</html>
